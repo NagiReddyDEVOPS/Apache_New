@@ -1,0 +1,12 @@
+---
+# tasks file for apache
+- name: Install the apache
+  yum: name=httpd state=present
+  notify:
+  - start apache
+
+- name: Changing the port number
+  template: patt=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+
+- name: copy the content
+  copy: src=sample.txt dest=/opt
